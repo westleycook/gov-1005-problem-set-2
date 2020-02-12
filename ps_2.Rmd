@@ -101,6 +101,15 @@ points_from_nh <- endorsements_2020 %>%
                         pull(points)
 
 nh_avg_points <- mean(points_from_nh)
+
+# Set filter(state == "NH") to give just the NH rows, and the first thing I
+# tried was to just pipe it into a mean() operation and name the result
+# nh_avg_points. But the mean() operation didn't work, because the points
+# date type is <dbl>, which apparently doesn't work with mean()... So instead,
+# I pulled the points out and named that vector points_from_nh.
+
+# I then used a separate operation to take the mean of the points and name it
+# nh_avg_points.
                         
 
 ```
@@ -109,11 +118,23 @@ nh_avg_points <- mean(points_from_nh)
 
 ```{r madlib_5, include = FALSE}
 
+warren_klobuchar_points <- endorsements_2020 %>% 
+                              filter(endorsee == "Amy Klobuchar" | 
+                                       endorsee == "Elizabeth Warren") %>% 
+                                  pull(points)
 
+warren_klobuchar_points_total <- sum(warren_klobuchar_points)
+
+# Very similar process to mad lib 4. I used the vertical bar in the filter()
+# operation to filter for Klobuchar or Warren, then pulled the points
+# and named them warren_klobuchar_points.
+
+# I then used the sum() operation to take the total of those points and
+# name it warren_klobuchar_points_total.
 
 ```
 
-5. Between them, the two female candidates who remain in the race (Amy Klobuchar and Elizabeth Warren) have a total of X endorsement points.
+5. Between them, the two female candidates who remain in the race (Amy Klobuchar and Elizabeth Warren) have a total of **`r warren_klobuchar_points_total`** endorsement points.
 
 6a. The variable “position” is a X class of variable.
 
@@ -129,7 +150,9 @@ nh_avg_points <- mean(points_from_nh)
 
 
 
-Worked with:
-- Owen Bernstein
+### Worked with:
+Owen Bernstein
 - Lindsey Greenhill
 - Katelyn Li
+
+###### at Evelyn's Lowell Study Hall on Tuesday, February 11.
