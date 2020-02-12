@@ -180,9 +180,8 @@ library(ggthemes)
 ```{r plot, echo = FALSE}
 
 # This r chunk first creates a new tibble, the data from which I'll use in the
-# plot I'm replicating.
-# It then creates the plot, trying to replicate the plot from the
-# fivethirtyeight article.
+# plot I'm replicating. It then creates the plot itself, trying to replicate as
+# closely as possible the plot from the fivethirtyeight article.
 
 # To create the tibble, I first piped the existing congress dataframe to a
 # filter function, filtering by party is "D" or "R" - there might be an easier
