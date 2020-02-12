@@ -31,7 +31,7 @@ library(lintr)
 
 ```{r madlib_1, include=FALSE}
 
-# This r chunk assigns a variable to insert in-line in mad lib 1.
+# This r chunk assigns an object to insert in-line in mad lib 1.
 
 # Ran the arrange() command to figure out what the earliest date was, then used
 # the slice() command to isolate just the first row of the dataframe. Then
@@ -49,7 +49,7 @@ first_date <- endorsements_2020 %>%
 
 ```{r madlib_2, include = FALSE}
 
-# This r chunk assigns a variable to insert in-line in mad lib 2.
+# This r chunk assigns an object to insert in-line in mad lib 2.
 
 # Same process as for Mad Lib 1, but adding desc() within the arrange() function
 # to reverse the order of the output and give me the most recent date instead of
@@ -66,12 +66,12 @@ most_recent_date <- endorsements_2020 %>%
 
 ```{r madlib_3, include = FALSE}
 
-# This r chunk assigns a variable to insert in-line in mad lib 3.
+# This r chunk assigns an object to insert in-line in mad lib 3.
 
 # Filtered first by position to narrow the data to only the mayors who have
 # given endorsements. Then added the argument endorsee == "Pete Buttigieg" to
-# isolate only the one mayor who endorsed him. Used pull() command to grab that
-# mayor's name and assign it to the variable "mayor", which I then placed in an
+# isolate the one mayor who endorsed him. Used pull() command to grab that
+# mayor's name and assign it to the object "mayor", which I then placed in an
 # embedded r in mad lib 3.
 
 mayor <- filter(endorsements_2020, 
@@ -85,7 +85,7 @@ mayor <- filter(endorsements_2020,
 
 ```{r madlib_4, include = FALSE}
 
-# This r chunk assigns a variable to insert in-line in mad lib 4.
+# This r chunk assigns an object to insert in-line in mad lib 4.
 
 # Set filter(state == "NH") to give just the NH rows, and the first thing I
 # tried was to just pipe it into a mean() operation and name the result
@@ -108,7 +108,7 @@ nh_avg_points <- mean(points_from_nh)
 
 ```{r madlib_5, include = FALSE}
 
-# This r chunk assigns a variable to insert in-line in mad lib 5.
+# This r chunk assigns an object to insert in-line in mad lib 5.
 
 # Very similar process to mad lib 4. I used the vertical bar in the filter()
 # operation to filter for Klobuchar or Warren, then pulled the points and named
@@ -130,18 +130,18 @@ warren_klobuchar_points_total <- sum(warren_klobuchar_points)
 
 ```{r madlib_6_note, include = FALSE}
 
-# This r chunk assigns three variables to insert in-line in parts a-c of mad lib
+# This r chunk assigns three objects to insert in-line in parts a-c of mad lib
 # 6.
 
 # Part a: piping endorsements_2020 into pull() to isolate the position column as
 # an object, then calling the class() function to name the class. Assigning the
-# resulting value to a new variable called position_class.
+# resulting value to a new object called position_class.
 
 position_class <- endorsements_2020 %>%
                     pull(position) %>%
                     class()
 
-# Part b: same process as with part a, but with endorser (and with new variable
+# Part b: same process as with part a, but with endorser (and with new object
 # endorser_class) instead of with position.
 
 endorser_class <- endorsements_2020 %>% 
@@ -149,7 +149,7 @@ endorser_class <- endorsements_2020 %>%
                     class()
 
 # Part c: again, same process as with part a, but with points (and with new
-# variable points_class) instead of with position.
+# object points_class) instead of with position.
 
 points_class <- endorsements_2020 %>% 
                   pull(points) %>% 
@@ -183,11 +183,17 @@ library(ggthemes)
 # plot I'm replicating. It then creates the plot itself, trying to replicate as
 # closely as possible the plot from the fivethirtyeight article.
 
-# To create the tibble, I first piped the existing congress dataframe to a
-# filter function, filtering by party is "D" or "R" - there might be an easier
-# way to do this? Oh well. I then grouped by year and party, piping the result
-# into a summarize() function to pull out the average age for each year by
-# party.
+# I first spent a few minutes exploring this data, in a way similar to how I
+# explored the endorsements data earlier. I printed the tibble, then used
+# glimpse(congress) and summary(congress) to understand what kind of data I was
+# working with and what I'd need to do to create the dataframe I need for the
+# graph.
+
+# After exploring, I created a new tibble by first piping the existing congress
+# dataframe to a filter function, filtering by party is "D" or "R" (there might
+# be an easier way to do this? Oh well). I then grouped by year and party,
+# piping the result into a summarize() function to pull out the average age for
+# each year by party.
 
 avg_congress_ages <- congress %>% 
                        filter(party == "D" | 
@@ -210,10 +216,10 @@ ggplot(avg_congress_ages,
   geom_line() +
   
 # Setting scale for x axis, using scale_x_continuous per suggestion of the
-# assignment. It'll auto-generate appropriate limits, but I want vertical grid
-# lines to appear for years from 1950-2010, so I'll use the breaks argument with
-# a seq() command to set the first and last years they'll appear, and how much
-# space to put between them (by = 10).
+# assignment. It'll auto-generate appropriate limits for x, but I want vertical
+# grid lines to appear for years from 1950-2010, so I'll use the breaks argument
+# with a seq() command to set the first and last years they'll appear, and how
+# much space to put between them (by = 10).
   
   scale_x_continuous(breaks = seq(1950,
                                   2010,
