@@ -1,7 +1,7 @@
 ---
 title: "Problem Set 2"
 author: "Westley Cook"
-date: "2/11/2020"
+date: "2/12/2020"
 output: html_document
 ---
 
@@ -193,8 +193,6 @@ library(ggthemes)
 
 ```{r plot, echo = FALSE}
 
-
-
 avg_congress_ages <- congress %>% 
                        filter(party == "D" | 
                               party == "R") %>% 
@@ -260,4 +258,4 @@ Owen Bernstein
 - Lindsey Greenhill
 - Katelyn Li
 
-###### at Evelyn's Lowell Study Hall on Tuesday, February 11.
+###### at Evelyn's Study Hall in Lowell on Tuesday, February 11.
