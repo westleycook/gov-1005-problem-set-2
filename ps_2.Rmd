@@ -8,55 +8,40 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
+# Loading the tidyverse and fivethirtyeight packages because the pset said I
+# would need them. Loading lintr because the tidyverse style guide said it would
+# perform automated checks to make sure I was conforming to the style guide, and
+# I anticipate needing help to not lose points on style issues since I've never
+# done this before *upside-down smiley face*.
+
 library(tidyverse)
 library(fivethirtyeight)
 library(lintr)
 
-# Loading the tidyverse and fivethirtyeight packages because the pset said
-# I would need them. Loading lintr because the tidyverse style guide said it
-# would perform automated checks to make sure I was conforming to the style
-# guide, and I anticipate needing help to not lose points on style issues
-# since I've never done this before.
-
 ```
-
 
 ```{r exploring_data, include = FALSE}
 
-# glimpse(x)
-
-# Trying to get a sense for what this dataframe looks like.
-
-# summary(x)
-
-# Trying another approach to see what the dataframe looks like
+# Used glimpse(endorsements_2020) and then summary(endorsements_2020) to get a
+# sense for what this dataframe looks like.
 
 ```
-
 
 ## Mad Libs
 
 ```{r madlib_1, include=FALSE}
 
-# Will use this r chunk to set up a variable for mad lib 1 to make plugging
-# into r insert easy and to make this code more readable.
+# This r chunk assigns a variable to insert in-line in mad lib 1.
 
-endorsements_2020
-
-# Renaming endorsements_2020 as x so it's easier to call as I work on the
-# rest of the pset.
+# Ran the arrange() command to figure out what the earliest date was, then used
+# the slice() command to isolate just the first row of the dataframe. Then
+# pulled the value from the date column and named it first_date so I could slot
+# it in nicely for the Mad Lib.
 
 first_date <- endorsements_2020 %>% 
                 arrange(date) %>% 
                 slice(1) %>% 
                 pull(date)
-
-# Ran the arrange() command and figured out what the date was, and then labored
-# over it for a long time before I asked for help and Evelyn told me about the
-# slice() command I could use to isolate a single row of the dataframe.
-# So I sliced it to keep just the first row, then pulled the value from the
-# date column and named it first_date so I could slot it in nicely for
-# the Mad Lib.
 
 ```
 
@@ -64,13 +49,16 @@ first_date <- endorsements_2020 %>%
 
 ```{r madlib_2, include = FALSE}
 
+# This r chunk assigns a variable to insert in-line in mad lib 2.
+
+# Same process as for Mad Lib 1, but adding desc() within the arrange() function
+# to reverse the order of the output and give me the most recent date instead of
+# the oldest one.
+
 most_recent_date <- endorsements_2020 %>% 
                       arrange(desc(date)) %>% 
                       slice(1) %>% 
                       pull(date)
-
-# Same process as for Mad Lib 1, but adding desc() to reverse the order and
-# give me the most recent date instead of the oldest one.
 
 ```
 
@@ -78,39 +66,41 @@ most_recent_date <- endorsements_2020 %>%
 
 ```{r madlib_3, include = FALSE}
 
-mayor <- filter(endorsements_2020, 
-                position == "mayor", 
-                endorsee == "Pete Buttigieg") %>% 
-         pull(endorser)
+# This r chunk assigns a variable to insert in-line in mad lib 3.
 
 # Filtered first by position to narrow the data to only the mayors who have
-# given endorsements. Then added the argument endorsee == "Pete Buttigieg"
-# to isolate only the one mayor who endorsed him. Used pull() command
-# to grab that mayor's name and assign it to the variable "mayor", which
-# I then placed in an embedded r in mad lib 3.
+# given endorsements. Then added the argument endorsee == "Pete Buttigieg" to
+# isolate only the one mayor who endorsed him. Used pull() command to grab that
+# mayor's name and assign it to the variable "mayor", which I then placed in an
+# embedded r in mad lib 3.
+
+mayor <- filter(endorsements_2020, 
+                  position == "mayor", 
+                  endorsee == "Pete Buttigieg") %>% 
+         pull(endorser)
 
 ```
-
 
 3. **`r mayor`** is the mayor that has endorsed Pete Buttigieg.
 
 ```{r madlib_4, include = FALSE}
 
+# This r chunk assigns a variable to insert in-line in mad lib 4.
+
+# Set filter(state == "NH") to give just the NH rows, and the first thing I
+# tried was to just pipe it into a mean() operation and name the result
+# nh_avg_points. But the mean() operation didn't work, because the points date
+# type is <dbl>, which apparently doesn't work with mean()... So instead, I
+# pulled the points out and named that vector points_from_nh.
+
 points_from_nh <- endorsements_2020 %>% 
                     filter(state == "NH") %>% 
                     pull(points)
 
-nh_avg_points <- mean(points_from_nh)
-
-# Set filter(state == "NH") to give just the NH rows, and the first thing I
-# tried was to just pipe it into a mean() operation and name the result
-# nh_avg_points. But the mean() operation didn't work, because the points
-# date type is <dbl>, which apparently doesn't work with mean()... So instead,
-# I pulled the points out and named that vector points_from_nh.
-
 # I then used a separate operation to take the mean of the points and name it
 # nh_avg_points.
-                        
+
+nh_avg_points <- mean(points_from_nh)
 
 ```
 
@@ -118,26 +108,21 @@ nh_avg_points <- mean(points_from_nh)
 
 ```{r madlib_5, include = FALSE}
 
+# This r chunk assigns a variable to insert in-line in mad lib 5.
+
+# Very similar process to mad lib 4. I used the vertical bar in the filter()
+# operation to filter for Klobuchar or Warren, then pulled the points and named
+# them warren_klobuchar_points.
+
 warren_klobuchar_points <- endorsements_2020 %>% 
                              filter(endorsee == "Amy Klobuchar" | 
                                     endorsee == "Elizabeth Warren") %>% 
                              pull(points)
 
+# I then used the sum() operation to take the total of those points and name it
+# warren_klobuchar_points_total.
+
 warren_klobuchar_points_total <- sum(warren_klobuchar_points)
-
-# Very similar process to mad lib 4. I used the vertical bar in the filter()
-# operation to filter for Klobuchar or Warren, then pulled the points
-# and named them warren_klobuchar_points.
-
-# I then used the sum() operation to take the total of those points and
-# name it warren_klobuchar_points_total.
-
-
-
-# A brief comment for mad lib 6:
-# On each of the three parts of mad lib 6, I only needed one operation, so I
-# chose to just include the operation in-line rather than using an r chunk to
-# assign the value I wanted to a variable and insert that variable in-line.
 
 ```
 
@@ -145,28 +130,30 @@ warren_klobuchar_points_total <- sum(warren_klobuchar_points)
 
 ```{r madlib_6_note, include = FALSE}
 
+# This r chunk assigns three variables to insert in-line in parts a-c of mad lib
+# 6.
+
+# Part a: piping endorsements_2020 into pull() to isolate the position column as
+# an object, then calling the class() function to name the class. Assigning the
+# resulting value to a new variable called position_class.
+
 position_class <- endorsements_2020 %>%
                     pull(position) %>%
                     class()
 
-# Piping endorsements_2020 into pull() to isolate the position column as
-# an object, then calling the class() function to name the class. Assigning
-# the resulting value to a new variable called position_class, which I will
-# insert in-line for the mad lib.
+# Part b: same process as with part a, but with endorser (and with new variable
+# endorser_class) instead of with position.
 
 endorser_class <- endorsements_2020 %>% 
                     pull(endorser) %>% 
                     class()
 
-# Same process as with part a, but with endorser (and with new variable 
-# endorser_class) instead of with position.
+# Part c: again, same process as with part a, but with points (and with new
+# variable points_class) instead of with position.
 
 points_class <- endorsements_2020 %>% 
                   pull(points) %>% 
                   class()
-
-# Again, same process as with part a, but with points (and with new variable 
-# points_class) instead of with position.
 
 ```
 
@@ -176,22 +163,32 @@ points_class <- endorsements_2020 %>%
 
 6c. The variable “points” is a **`r points_class`** class of variable.
 
-
-
-
 ## Plot Replication
 
 ```{r plot_prep, include = FALSE}
 
+# This r chunk loads the gov.1005.data package, which I need for the congress
+# data it contains. It then loads the ggthemes package, which I'll use in
+# replicating the format and style of the plot.
+
 library(gov.1005.data)
 library(ggthemes)
-
-# 
 
 ```
 
 
 ```{r plot, echo = FALSE}
+
+# This r chunk first creates a new tibble, the data from which I'll use in the
+# plot I'm replicating.
+# It then creates the plot, trying to replicate the plot from the
+# fivethirtyeight article.
+
+# To create the tibble, I first piped the existing congress dataframe to a
+# filter function, filtering by party is "D" or "R" - there might be an easier
+# way to do this? Oh well. I then grouped by year and party, piping the result
+# into a summarize() function to pull out the average age for each year by
+# party.
 
 avg_congress_ages <- congress %>% 
                        filter(party == "D" | 
@@ -200,15 +197,31 @@ avg_congress_ages <- congress %>%
                        summarize(avg_age = mean(age)
                     )
 
+# Plotting average congress ages with year on x axis, and average age on y axis,
+# coloring by party
+
 ggplot(avg_congress_ages,
   aes(x = year,
       y = avg_age,
       color = party)
   ) +
+
+# Making it a line plot
+  
   geom_line() +
+  
+# Setting scale for x axis: it'll auto-generate appropriate limits, but I want
+# vertical grid lines to appear for years from 1950-2010, so I'll use the breaks
+# argument with a seq() command to set the first and last years they'll appear,
+# and how much space to put between them (by = 10).
+  
   scale_x_continuous(breaks = seq(1950,
                                   2010,
                                   by = 10),
+                     
+# Labeling each of the vertical grid lines, taking label names from the plot I'm
+# replicating and using c() to combine them into a character vector.
+                     
                      labels = c("1950",
                                 "'60",
                                 "'70",
@@ -217,39 +230,80 @@ ggplot(avg_congress_ages,
                                 "2000",
                                 "'10")
                      ) +
+  
+# Now will similarly scale and label the y axis. Unlike the x axis, for this one
+# I need to set clear limits (the auto-generated limits don't match the plot I'm
+# replicating).
+  
   scale_y_continuous(limits = c(40,
                                 62),
+                     
+# Now setting breaks, like I did for the x axis, but with (obviously) different
+# values, copied from the plot I'm replicating.
+                     
                      breaks = seq(40,
                                   60,
                                   by = 5),
+
+# Now labeling the y axis as I did with the x axis. Values in the c() operator
+# come from the plot I'm replicating.
+
                      labels = c("40",
                                 "45",
                                 "50",
                                 "55",
                                 "60 yrs")
                      ) +
+  
+# Using the theme_fivethirtyeight() operation to change the background color and
+# font and other aspects of the style of the plot; much easier than keying in
+# all those changes individually.
+  
   theme_fivethirtyeight() + 
+  
+# Want to add title, subtitle, and caption; using labs() because I can add all
+# of those within the same operation using some of the lab() arguments.
+# Character strings for title, subtitle, and caption all copied from the plot
+# I'm replicating; labels are NULL because the plot didn't have any.
+  
   labs(title = "Average Age of Members of Congress",
        subtitle = "At start of term, 1947-2013",
        labels = NULL,
        caption = "Source: fivethirtyeight package") +
+  
+# Getting rid of the legend
+  
   theme(legend.position = "none") +
+  
+# Adding text on the plot to insert "Democrats" in blue. x and y are the
+# coordinates on the plot (figured out what the exact numbers should be for
+# those, and for size, through trial and error). Other arguments are
+# self-explanatory.
+  
   annotate("text",
            x = 1996,
            y = 58,
            label = "Democrats",
            color = "blue",
            size = 5.5) +
+  
+# Adding text to insert "Republicans" in red, using the same process as I used
+# above for "Democrats".
+  
   annotate("text",
            x = 1967, 
            y = 57, 
            label = "Republicans",
            color = "red",
            size = 5.5) +
+  
+# Using this to manually change the color of the lines on the plot from their
+# default settings, so the Democrats line will be blue and the Republican line
+# will be red.
+  
   scale_color_manual(values = c("blue",
                                 "red")
                      )
-
 
 ```
 
