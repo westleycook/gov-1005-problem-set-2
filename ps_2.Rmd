@@ -209,10 +209,11 @@ ggplot(avg_congress_ages,
   
   geom_line() +
   
-# Setting scale for x axis: it'll auto-generate appropriate limits, but I want
-# vertical grid lines to appear for years from 1950-2010, so I'll use the breaks
-# argument with a seq() command to set the first and last years they'll appear,
-# and how much space to put between them (by = 10).
+# Setting scale for x axis, using scale_x_continuous per suggestion of the
+# assignment. It'll auto-generate appropriate limits, but I want vertical grid
+# lines to appear for years from 1950-2010, so I'll use the breaks argument with
+# a seq() command to set the first and last years they'll appear, and how much
+# space to put between them (by = 10).
   
   scale_x_continuous(breaks = seq(1950,
                                   2010,
@@ -230,9 +231,9 @@ ggplot(avg_congress_ages,
                                 "'10")
                      ) +
   
-# Now will similarly scale and label the y axis. Unlike the x axis, for this one
-# I need to set clear limits (the auto-generated limits don't match the plot I'm
-# replicating).
+# Now will similarly scale and label the y axis, using scale_y_continuous per
+# suggestion of the assignment. Unlike the x axis, for this one I need to set
+# clear limits (the auto-generated limits don't match the plot I'm replicating).
   
   scale_y_continuous(limits = c(40,
                                 62),
@@ -260,10 +261,11 @@ ggplot(avg_congress_ages,
   
   theme_fivethirtyeight() + 
   
-# Want to add title, subtitle, and caption; using labs() because I can add all
-# of those within the same operation using some of the lab() arguments.
-# Character strings for title, subtitle, and caption all copied from the plot
-# I'm replicating; labels are NULL because the plot didn't have any.
+# Want to add title, subtitle, and caption; using labs() because 1) the
+# assignment suggested it, and 2) I can add all the necessary elements within
+# this one operation using lab() arguments. Character strings for title,
+# subtitle, and caption all copied from the plot I'm replicating; labels are
+# NULL because the plot didn't have any.
   
   labs(title = "Average Age of Members of Congress",
        subtitle = "At start of term, 1947-2013",
@@ -274,10 +276,10 @@ ggplot(avg_congress_ages,
   
   theme(legend.position = "none") +
   
-# Adding text on the plot to insert "Democrats" in blue. x and y are the
-# coordinates on the plot (figured out what the exact numbers should be for
-# those, and for size, through trial and error). Other arguments are
-# self-explanatory.
+# Adding text on the plot to insert "Democrats" in blue. Using annotate() per
+# suggestion of the assignment. x and y are the coordinates on the plot (figured
+# out what the exact numbers should be for those, and for size, through trial
+# and error). Other arguments are self-explanatory.
   
   annotate("text",
            x = 1996,
@@ -296,9 +298,9 @@ ggplot(avg_congress_ages,
            color = "red",
            size = 5.5) +
   
-# Using this to manually change the color of the lines on the plot from their
-# default settings, so the Democrats line will be blue and the Republican line
-# will be red.
+# Using scale_color_manual() per suggestion of the assignment to manually change
+# the color of the lines on the plot from their default settings, so the
+# Democrat line will be blue and the Republican line will be red.
   
   scale_color_manual(values = c("blue",
                                 "red")
