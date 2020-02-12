@@ -60,9 +60,19 @@ first_date <- x %>% arrange(date) %>% slice(1) %>% pull(date)
 
 ```{r madlib_2, include = FALSE}
 
+most_recent_date <- x %>% arrange(desc(date)) %>% slice(1) %>% pull(date)
+
+# Same process as for Mad Lib 1, but adding desc() to reverse the order and
+# give me the most recent date instead of the oldest one.
+
 ```
 
-2. The most recent date for an endorsement is X
+2. The most recent date for an endorsement is **`r most_recent_date`**.
+
+```{r madlib_3, include = FALSE}
+
+```
+
 
 3. X is the mayor that has endorsed Pete Buttigieg.
 
