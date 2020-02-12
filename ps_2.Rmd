@@ -41,18 +41,22 @@ library(lintr)
 # Will use this r chunk to set up a variable for mad lib 1 to make plugging
 # into r insert easy and to make this code more readable.
 
-x <- endorsements_2020
+endorsements_2020
 
 # Renaming endorsements_2020 as x so it's easier to call as I work on the
 # rest of the pset.
 
-first_date <- x %>% arrange(date) %>% slice(1) %>% pull(date)
+first_date <- endorsements_2020 %>% 
+                arrange(date) %>% 
+                slice(1) %>% 
+                pull(date)
 
 # Ran the arrange() command and figured out what the date was, and then labored
-# over it for a long time before Evelyn told me about the slice() command I
-# could use to isolate a single row of the dataframe. So I sliced it to keep
-# just the first row, then pulled the value from the date column and named it
-# first_date so I could slot it in nicely for the Mad Lib.
+# over it for a long time before I asked for help and Evelyn told me about the
+# slice() command I could use to isolate a single row of the dataframe.
+# So I sliced it to keep just the first row, then pulled the value from the
+# date column and named it first_date so I could slot it in nicely for
+# the Mad Lib.
 
 ```
 
@@ -60,7 +64,10 @@ first_date <- x %>% arrange(date) %>% slice(1) %>% pull(date)
 
 ```{r madlib_2, include = FALSE}
 
-most_recent_date <- x %>% arrange(desc(date)) %>% slice(1) %>% pull(date)
+most_recent_date <- endorsements_2020 %>% 
+                      arrange(desc(date)) %>% 
+                      slice(1) %>% 
+                      pull(date)
 
 # Same process as for Mad Lib 1, but adding desc() to reverse the order and
 # give me the most recent date instead of the oldest one.
@@ -71,10 +78,19 @@ most_recent_date <- x %>% arrange(desc(date)) %>% slice(1) %>% pull(date)
 
 ```{r madlib_3, include = FALSE}
 
+mayor <- filter(endorsements_2020, 
+        position == "mayor", 
+        endorsee == "Pete Buttigieg") %>% 
+  pull(endorser)
+
 ```
 
 
-3. X is the mayor that has endorsed Pete Buttigieg.
+3. **`r mayor`** is the mayor that has endorsed Pete Buttigieg.
+
+```{r}
+
+```
 
 4. Endorsers from New Hampshire have an average of X endorsement points.
 
