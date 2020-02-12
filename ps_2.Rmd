@@ -1,0 +1,16 @@
+---
+title: "Problem Set 2"
+author: "Westley Cook"
+date: "2/11/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(fivethirtyeight)
+library(lintr)
+
+# Loading the tidyverse and fivethirtyeight packages because the pset said I would need them. Loading lintr because the tidyverse style guide said it would perform automated checks to make sure I was conforming to the style guide, and I anticipate needing help to not lose points on style issues.
+```
+
