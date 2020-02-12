@@ -7,6 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
 library(tidyverse)
 library(fivethirtyeight)
 library(lintr)
@@ -23,10 +24,30 @@ x <- endorsements_2020
 # rest of the pset.
 ```
 
-```{r madlib_1, include=FALSE}
+```{r exploring_data, include = FALSE}
+
+glimpse(x)
+
+# Trying to get a sense for what this dataframe looks like.
+
+summary(x)
+
+# Trying another approach to see what the dataframe looks like
 
 ```
 
+
+```{r madlib_1, include=FALSE}
+
+# Will use this to set up a variable for mad lib 1 to make plugging into r
+# insert easy and to make this code more readable.
+
+
+
+```
+
+
+## Mad Libs
 
 1. The earliest date for an endorsement in the dataset is X
 
@@ -43,3 +64,8 @@ x <- endorsements_2020
 6b. The variable “endorser” is a X class of variable.
 
 6c. The variable “points” is a X class of variable.
+
+
+
+## Graph Replication
+
