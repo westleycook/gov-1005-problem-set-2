@@ -18,38 +18,49 @@ library(lintr)
 # guide, and I anticipate needing help to not lose points on style issues
 # since I've never done this before.
 
-x <- endorsements_2020
-
-# Renaming endorsements_2020 as x so it's easier to call as I work on the
-# rest of the pset.
 ```
+
 
 ```{r exploring_data, include = FALSE}
 
-glimpse(x)
+# glimpse(x)
 
 # Trying to get a sense for what this dataframe looks like.
 
-summary(x)
+# summary(x)
 
 # Trying another approach to see what the dataframe looks like
 
 ```
 
 
+## Mad Libs
+
 ```{r madlib_1, include=FALSE}
 
-# Will use this to set up a variable for mad lib 1 to make plugging into r
-# insert easy and to make this code more readable.
+# Will use this r chunk to set up a variable for mad lib 1 to make plugging
+# into r insert easy and to make this code more readable.
 
+x <- endorsements_2020
 
+# Renaming endorsements_2020 as x so it's easier to call as I work on the
+# rest of the pset.
+
+first_date <- x %>% arrange(date) %>% slice(1) %>% pull(date)
+
+# Ran the arrange() command and figured out what the date was, and then labored
+# over it for a long time before Evelyn told me about the slice() command I
+# could use to isolate a single row of the dataframe. So I sliced it to keep
+# just the first row, then pulled the value from the date column and named it
+# first_date so I could slot it in nicely for the Mad Lib.
 
 ```
 
+1. The earliest date for an endorsement in the dataset is **`r first_date`**.
 
-## Mad Libs
+```{r madlib_2, include = FALSE}
 
-1. The earliest date for an endorsement in the dataset is X
+```
 
 2. The most recent date for an endorsement is X
 
@@ -69,3 +80,11 @@ summary(x)
 
 ## Graph Replication
 
+
+
+
+
+Worked with:
+- Owen Bernstein
+- Lindsey Greenhill
+- Katelyn Li
