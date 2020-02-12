@@ -11,6 +11,35 @@ library(tidyverse)
 library(fivethirtyeight)
 library(lintr)
 
-# Loading the tidyverse and fivethirtyeight packages because the pset said I would need them. Loading lintr because the tidyverse style guide said it would perform automated checks to make sure I was conforming to the style guide, and I anticipate needing help to not lose points on style issues.
+# Loading the tidyverse and fivethirtyeight packages because the pset said
+# I would need them. Loading lintr because the tidyverse style guide said it
+# would perform automated checks to make sure I was conforming to the style
+# guide, and I anticipate needing help to not lose points on style issues
+# since I've never done this before.
+
+x <- endorsements_2020
+
+# Renaming endorsements_2020 as x so it's easier to call as I work on the
+# rest of the pset.
 ```
 
+```{r madlib_1, include=FALSE}
+
+```
+
+
+1. The earliest date for an endorsement in the dataset is X
+
+2. The most recent date for an endorsement is X
+
+3. X is the mayor that has endorsed Pete Buttigieg.
+
+4. Endorsers from New Hampshire have an average of X endorsement points.
+
+5. Between them, the two female candidates who remain in the race (Amy Klobuchar and Elizabeth Warren) have a total of X endorsement points.
+
+6a. The variable “position” is a X class of variable.
+
+6b. The variable “endorser” is a X class of variable.
+
+6c. The variable “points” is a X class of variable.
