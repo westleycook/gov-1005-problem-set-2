@@ -79,9 +79,9 @@ most_recent_date <- endorsements_2020 %>%
 ```{r madlib_3, include = FALSE}
 
 mayor <- filter(endorsements_2020, 
-        position == "mayor", 
-        endorsee == "Pete Buttigieg") %>% 
-  pull(endorser)
+                position == "mayor", 
+                endorsee == "Pete Buttigieg") %>% 
+         pull(endorser)
 
 # Filtered first by position to narrow the data to only the mayors who have
 # given endorsements. Then added the argument endorsee == "Pete Buttigieg"
@@ -97,8 +97,8 @@ mayor <- filter(endorsements_2020,
 ```{r madlib_4, include = FALSE}
 
 points_from_nh <- endorsements_2020 %>% 
-                        filter(state == "NH") %>% 
-                        pull(points)
+                    filter(state == "NH") %>% 
+                    pull(points)
 
 nh_avg_points <- mean(points_from_nh)
 
@@ -119,9 +119,9 @@ nh_avg_points <- mean(points_from_nh)
 ```{r madlib_5, include = FALSE}
 
 warren_klobuchar_points <- endorsements_2020 %>% 
-                              filter(endorsee == "Amy Klobuchar" | 
-                                       endorsee == "Elizabeth Warren") %>% 
-                                  pull(points)
+                             filter(endorsee == "Amy Klobuchar" | 
+                                    endorsee == "Elizabeth Warren") %>% 
+                             pull(points)
 
 warren_klobuchar_points_total <- sum(warren_klobuchar_points)
 
@@ -147,7 +147,7 @@ warren_klobuchar_points_total <- sum(warren_klobuchar_points)
 
 position_class <- endorsements_2020 %>%
                     pull(position) %>%
-                      class()
+                    class()
 
 # Piping endorsements_2020 into pull() to isolate the position column as
 # an object, then calling the class() function to name the class. Assigning
@@ -156,14 +156,14 @@ position_class <- endorsements_2020 %>%
 
 endorser_class <- endorsements_2020 %>% 
                     pull(endorser) %>% 
-                      class()
+                    class()
 
 # Same process as with part a, but with endorser (and with new variable 
 # endorser_class) instead of with position.
 
 points_class <- endorsements_2020 %>% 
                   pull(points) %>% 
-                    class()
+                  class()
 
 # Again, same process as with part a, but with points (and with new variable 
 # points_class) instead of with position.
@@ -179,11 +179,34 @@ points_class <- endorsements_2020 %>%
 
 
 
-## Graph Replication
+## Plot Replication
+
+```{r plot_prep, include = FALSE}
+
+library(gov.1005.data)
+
+# 
+
+```
 
 
+```{r plot, echo = FALSE}
+
+avg_congress_ages <- congress %>% 
+                       filter(party == "D" | 
+                              party == "R") %>% 
+                       group_by(year, party) %>% 
+                       summarize(avg_age = mean(age)
+                    )
+
+ggplot(avg_congress_ages,
+    aes(x = year,
+        y = avg_age,
+        color = party)) +
+    geom_line()
 
 
+```
 
 ### Worked with:
 Owen Bernstein
