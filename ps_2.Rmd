@@ -157,11 +157,11 @@ points_class <- endorsements_2020 %>%
 
 ```
 
-6a. The variable “position” is a **`r position_class`** class of variable.
+6. a. The variable “position” is a **`r position_class`** class of variable.
 
-6b. The variable “endorser” is a **`r endorser_class`** class of variable.
+   b. The variable “endorser” is a **`r endorser_class`** class of variable.
 
-6c. The variable “points” is a **`r points_class`** class of variable.
+   c. The variable “points” is a **`r points_class`** class of variable.
 
 ## Plot Replication
 
