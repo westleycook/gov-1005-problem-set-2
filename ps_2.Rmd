@@ -132,15 +132,50 @@ warren_klobuchar_points_total <- sum(warren_klobuchar_points)
 # I then used the sum() operation to take the total of those points and
 # name it warren_klobuchar_points_total.
 
+
+
+# A brief comment for mad lib 6:
+# On each of the three parts of mad lib 6, I only needed one operation, so I
+# chose to just include the operation in-line rather than using an r chunk to
+# assign the value I wanted to a variable and insert that variable in-line.
+
 ```
 
 5. Between them, the two female candidates who remain in the race (Amy Klobuchar and Elizabeth Warren) have a total of **`r warren_klobuchar_points_total`** endorsement points.
 
-6a. The variable “position” is a X class of variable.
+```{r madlib_6_note, include = FALSE}
 
-6b. The variable “endorser” is a X class of variable.
+position_class <- endorsements_2020 %>%
+                    pull(position) %>%
+                      class()
 
-6c. The variable “points” is a X class of variable.
+# Piping endorsements_2020 into pull() to isolate the position column as
+# an object, then calling the class() function to name the class. Assigning
+# the resulting value to a new variable called position_class, which I will
+# insert in-line for the mad lib.
+
+endorser_class <- endorsements_2020 %>% 
+                    pull(endorser) %>% 
+                      class()
+
+# Same process as with part a, but with endorser (and with new variable 
+# endorser_class) instead of with position.
+
+points_class <- endorsements_2020 %>% 
+                  pull(points) %>% 
+                    class()
+
+# Again, same process as with part a, but with points (and with new variable 
+# points_class) instead of with position.
+
+```
+
+6a. The variable “position” is a **`r position_class`** class of variable.
+
+6b. The variable “endorser” is a **`r endorser_class`** class of variable.
+
+6c. The variable “points” is a **`r points_class`** class of variable.
+
 
 
 
