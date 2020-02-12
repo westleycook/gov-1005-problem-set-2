@@ -83,16 +83,35 @@ mayor <- filter(endorsements_2020,
         endorsee == "Pete Buttigieg") %>% 
   pull(endorser)
 
+# Filtered first by position to narrow the data to only the mayors who have
+# given endorsements. Then added the argument endorsee == "Pete Buttigieg"
+# to isolate only the one mayor who endorsed him. Used pull() command
+# to grab that mayor's name and assign it to the variable "mayor", which
+# I then placed in an embedded r in mad lib 3.
+
 ```
 
 
 3. **`r mayor`** is the mayor that has endorsed Pete Buttigieg.
 
-```{r}
+```{r madlib_4, include = FALSE}
+
+points_from_nh <- endorsements_2020 %>% 
+                        filter(state == "NH") %>% 
+                        pull(points)
+
+nh_avg_points <- mean(points_from_nh)
+                        
 
 ```
 
-4. Endorsers from New Hampshire have an average of X endorsement points.
+4. Endorsers from New Hampshire have an average of **`r nh_avg_points`** endorsement points.
+
+```{r madlib_5, include = FALSE}
+
+
+
+```
 
 5. Between them, the two female candidates who remain in the race (Amy Klobuchar and Elizabeth Warren) have a total of X endorsement points.
 
